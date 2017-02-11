@@ -14,7 +14,72 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.1/sockjs.js"></script>
 <title>index</title>
+
+<style>
+
+.navbar-inverse {background-color: #337ab7;border-color:#337ab7;border-radius: 0px;height:50px;width:100%;position: fixed;}
+
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:hover, .navbar-inverse .navbar-nav>.open>a:focus {
+color: #fff;background-color: #0e364c;}
+
+.navbar-inverse .navbar-nav>li>a {color:#ffffff;font-family: 'Open Sans', sans-serif;}
+.navbar-inverse .navbar-brand { color:#ffffff;}
+.menu { display:none;}
+
+@media all and (max-width:768px){
+    
+.navbar-inverse .drop_menu {display: block;visibility: visible;width: 110px;height:1000px;padding:0px 20px;position: absolute;right:-100px;
+transition:all ease 0.5s;border-top: 0px solid;cursor: pointer;}
+
+a.menu { display:block !important;margin: 9px 2px;float: right;color: #00bcd4; border:0px solid; background:none; font-size:30px;width:27px;position: relative;
+cursor:pointer;}
+
+.drop_menu1 { display: block;visibility: visible;width:250px;height:1000px;padding:5px 30px;position: absolute;right:0 !important;
+background-color: #0e364c !important; transition:all ease 0.5s;border-top: 0px solid;cursor: pointer;top: 50px;}
+
+}
+
+/*login register*/
+
+@import url(http://fonts.googleapis.com/css?family=Roboto);
+
+/****** LOGIN MODAL ******/
+.log-section {padding: 30px;max-width: 350px;width: 100% !important;background-color: #F7F7F7;margin: 0 auto;border-radius: 2px;
+box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);overflow: hidden;font-family: roboto;}
+.log-section h1 {text-align: center;font-size: 1.8em;font-family: roboto;color:#337ab7;}
+.log-section input[type=submit] {width: 100%;display: block;margin-bottom: 10px;position: relative;}
+.log-section input[type=text], input[type=password] {height: 44px;font-size: 16px;width: 100%;margin-bottom: 10px;-webkit-appearance: none;
+background: #fff;border: 1px solid #d9d9d9;border-top: 1px solid #c0c0c0;padding: 0 8px;box-sizing: border-box;-moz-box-sizing: border-box;}
+.log-section input[type=text]:hover, input[type=password]:hover {border: 1px solid #b9b9b9;border-top: 1px solid #a0a0a0;
+-moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);-webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);}
+.loginmodal {text-align: center;font-size: 14px;font-family: 'Arial', sans-serif;font-weight: 700;height: 36px;padding: 0 8px;}
+.loginmodal-submit { border: 0px;color: #fff;text-shadow: 0 1px rgba(0,0,0,0.1); background-color:#337ab7;padding: 17px 0px;font-family: roboto;}
+.loginmodal-submit:hover {border: 0px;text-shadow: 0 1px rgba(0,0,0,0.3);background-color:#5882a3;color:#ffffff;}
+.log-section a {text-decoration: none;color: #666;font-weight: 400;text-align: center;display: inline-block;opacity: 0.6;
+transition: opacity ease 0.5s;} 
+.login-help{font-size: 12px;}
+
+</style>
+<script>
+
+$(document).ready(function(e) {
+    $('#menu_icon').click(function(){
+        if($("#content_details").hasClass('drop_menu'))
+		{
+        $("#content_details").addClass('drop_menu1').removeClass('drop_menu');
+    }
+		else{
+			$("#content_details").addClass('drop_menu').removeClass('drop_menu1');
+			}
+	
+	
+	});
+	
+});
+</script>
+
 </head>
+
 <style>
 @import url(//fonts.googleapis.com/css?family=Roboto:500,700);
 
@@ -117,7 +182,7 @@
 
 </style>
 <body>
-    <nav class="navbar-pink">
+<!--     <nav class="navbar-pink">
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="#">LetzMingle</a>
@@ -157,13 +222,101 @@
     </ul>
     <ul class="nav navbar-nav navbar-right">
    
-<!--       <li><a href="#/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> -->
+      <li><a href="#/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
       <li><a href="#/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
      </div>
     
     </ul>
   </div>
 </nav>
+
+ -->
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+<link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.6.3/font-awesome.min.css"
+integrity="sha384-Wrgq82RsEean5tP3NK3zWAemiNEXofJsTwTyHmNb/iL3dP/sZJ4+7sOld1uqYJtE" crossorigin="anonymous">
+
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+     <a class="menu"><i class="fa fa-bars" id="menu_icon"></i></a>
+      <a class="navbar-brand" href="#">WebSiteName</a>
+    </div><!--navbar-header close-->
+    <div class="collapse navbar-collapse drop_menu" id="content_details">
+      <ul class="nav navbar-nav">
+        <li><a href="#"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-font"></span> About<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Company</a></li>
+            <li><a href="#">Work</a></li>
+            <li><a href="#">Timing</a></li>
+          </ul><!--dropdown-menu close-->
+        </li>
+        <li><a href="#"><span class="glyphicon glyphicon-heart-empty"></span> Gallery</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-conversation"></span> Chat</a></li>
+      </ul><!--nav navbar-nav close-->
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#" data-toggle="modal" data-target="#signup-modal"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a href="#/login" data-toggle="modal" data-target="#login-modal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul><!--navbar-right close-->
+    </div><!--collapse navbar-collapse drop_menu close-->
+  </div><!--container-fluid close-->
+</nav><!--navbar navbar-inverse close-->
+<br>
+<br>
+<br>
+
+<div ng-controller="UserController as ctrl" class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+          <div class="modal-dialog">
+    			<div class="log-section">
+					<h1>Login to Your Account</h1><br>
+				  <form ng-submit="ctrl.login()">
+				  <div ng-class="{ 'has-error': form.userid.$dirty && form.userid.$error.required }">
+				  	<input type="text" name="userid" placeholder="UserID" ng-model="ctrl.Userdetails.userid" required>
+				  	 <span ng-show="form.userid.$dirty && form.userid.$error.required" class="help-block">User Id is required</span>
+				  	</div>
+				  	<div ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+					<input type="password" name="pass" placeholder="Password" ng-model="ctrl.Userdetails.password" required>
+					<span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
+					</div>
+					<div>
+					<input type="submit" name="login" class="login loginmodal-submit" value="Login" ng-disabled="form.$invalid || ctrl.dataLoading">
+				  
+				  </form>
+					
+				  <div class="login-help">
+					<a href="#/register">Register</a> - <a href="#">Forgot Password</a>
+				  </div>
+				</div>
+			</div>
+		  </div>
+          
+          
+          
+          
+          
+<div class="modal fade" id="signup-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+          <div class="modal-dialog">
+    			<div class="log-section">
+					<h1>sign up for new Account</h1><br>
+				  <form>
+    				<input type="text" name="name" placeholder="First Name">
+                    <input type="text" name="name" placeholder="Last Name">
+					<input type="password" name="pass" placeholder="Create Password">
+                    <input type="password" name="pass" placeholder="confiram Password">
+					<input type="submit" name="signin" class="login loginmodal-submit" value="Sign Up">
+				  </form>
+					
+				  <div class="login-help">
+					 <a href="#">Allready Have an Account</a>
+				  </div>
+				</div>
+			</div>
+		  </div>
+
+
+
    
    
    
@@ -183,3 +336,6 @@
 <script src="c_chat/ChatController.js"></script>
 <script src="FriendService.js"></script>
 </html>
+
+
+
