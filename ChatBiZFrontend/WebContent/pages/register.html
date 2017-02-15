@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Register Page</title>
+</head>
+<style>
+body { 
+   background-image:url(http://cliparts.co/cliparts/rin/rpp/rinrpp4BT.jpg);
+   background-repeat: no-repeat;
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+    background-size: cover;
+    font-family: 'Palatino Linotype'!important;
+    font-size:15px;
+}
+.panel-default{
+background:none;
+}
+.row input[type="text"] {
+  box-shadow:none;
+  border-color:#ddd;
+  border-radius:0;
+  background:none;
+}
+.row input[type="password"] {
+  box-shadow:none;
+  border-color:#ddd;
+  border-radius:0;
+  background:none;
+}
+.row input[type="email"] {
+  box-shadow:none;
+  border-color:#ddd;
+  border-radius:0;
+  background:none;
+}
+.row input[type="tel"] {
+  box-shadow:none;
+  border-color:#ddd;
+  border-radius:0;
+  background:none;
+}
+
+</style>
+<body>
+	<div class="generic-container" ng-controller="UserController as ctrl">
+    <div class="panel panel-default">
+				<legend><center >Registration Form </center></legend>
+				
+				<div class="formcontainer">
+					<form ng-submit="ctrl.submit()" name="myForm"
+						class="form-horizontal">
+
+						<label>Register As..</label>
+						<div class="container">
+							<div class="radio">
+								<label class="radio-inline"> <input type="radio" id="Role"
+									name="role" value="student" ng-model="ctrl.Userdetails.Role">
+									Student
+								</label> <label class="radio-inline"> <input type="radio" id="Role"
+									name="role" value="alumni" ng-model="ctrl.Userdetails.Role">
+									Alumni
+								</label> <label class="radio-inline"> <input type="radio" id="Role"
+									name="role" value="employee" ng-model="ctrl.Userdetails.Role">
+									Employee
+								</label>
+							</div>
+
+
+						</div>
+
+
+						<div class="row">
+							<div class="form-group col-md-12">
+								<label class="col-md-2 control-lable" for="userid">ID</label>
+								<div class="col-md-7">
+									<input type="text" ng-model="ctrl.Userdetails.userid" id="userid"
+										class="userid form-control input-sm"
+										placeholder="ID" required ng-minlength="3" />
+								</div>
+							</div>
+						</div>
+
+
+						<div class="row">
+							<div class="form-group col-md-12">
+								<label class="col-md-2 control-lable" for="username">Name</label>
+								<div class="col-md-7">
+									<input type="text" ng-model="ctrl.Userdetails.username" id="username"
+										class="username form-control input-sm"
+										placeholder="John Doe" required ng-minlength="3" />
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="form-group col-md-12">
+								<label class="col-md-2 control-lable" for="password">Password</label>
+								<div class="col-md-7">
+									<input type="password" ng-model="ctrl.Userdetails.password"
+										id="password" class="username form-control input-sm"
+										placeholder="password" required ng-minlength="3" />
+								</div>
+							</div>
+						</div>
+
+
+						<div class="row">
+							<div class="form-group col-md-12">
+								<label class="col-md-2 control-lable" for="email">Email</label>
+								<div class="col-md-7">
+									<input type="email" ng-model="ctrl.Userdetails.email" id="email"
+										class="email form-control input-sm"
+										placeholder="abc@gmai.com" required />
+
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="form-group col-md-12">
+								<label class="col-md-2 control-lable" for="contact">Mobile</label>
+								<div class="col-md-7">
+									<input type="tel" ng-model="ctrl.Userdetails.contact" id="contact"
+										class="mobile form-control input-sm"
+										placeholder="mobilenumber" required />
+
+								</div>
+							</div>
+						</div>
+
+
+						<div class="row">
+							<div class="form-group col-md-12">
+								<label class="col-md-2 control-lable" for="address">Address</label>
+								<div class="col-md-7">
+									<input type="text" width="100" height="50"
+										ng-model="ctrl.Userdetails.address" id="address"
+										class="form-control input-sm"
+										placeholder="address" />
+								</div>
+							</div>
+						</div>
+
+
+
+						<div class="row">
+							<div class="form-actions floatRight">
+								<button type="submit" 
+									class="btn btn-default btn-register-submit btn-block m-t-md">Register</button>
+								<button type="button" ng-click="ctrl.reset()"
+									class="btn btn-default btn-reset-submit btn-block m-t-md">Reset</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+
+		</div>
+	
+
+
+</body>
+
+</body>
+</html>
