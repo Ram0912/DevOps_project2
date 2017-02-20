@@ -34,7 +34,7 @@ app.config(function($routeProvider) {
     controller  : 'UserController'
   })
   .when('/search_friend', {
-    templateUrl : 'pages/search_friend.html',
+    templateUrl : 'c_friends/search_friend.html',
     controller  : 'FriendController'
   })
 

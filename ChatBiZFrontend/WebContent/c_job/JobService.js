@@ -8,7 +8,7 @@ app.service('JobService', [
 		'$rootScope',
 		function($http, $q, $rootScope) {
 			console.log("job SERvices.... in job service//")
-			var BASE_URL = 'http://localhost:8030/colabBackEnd'
+			var BASE_URL = 'http://localhost:8001/ChatBiZBackend'
 			return {
 								
 				applyForJob:function(jobId){
