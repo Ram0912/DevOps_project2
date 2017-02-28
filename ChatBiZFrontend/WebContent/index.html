@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="myApp">
+<html ng-app="myApp" ng-controller="UserController as ctrl">
 <head>
 
    <meta charset="utf-8">
@@ -16,7 +16,7 @@
 <title>index</title>
 </head>
 <style>
- /* Remove the navbar's default margin-bottom and rounded borders */
+
     .navbar {
       margin-bottom:10;
       border-radius:40;
@@ -61,18 +61,22 @@ $(document).ready(
 <nav class="navbar navbar">
   <div class="container-fluid">
     <div class="navbar-header">
-   
-     
-    </div>
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+       
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
 	  <li><img src="https://www.freelogoservices.com/api/main/ph/zjHl2lgef9cYrQL0JFa7kzbw2vuCrxZJmhrN0zp9OXdE9g5shnN1i...Bv9ettdV9dsBUGw0pY" width="100" height="100" alt="Logo Thing main logo"></a>
 </li>
-      <li class="dropdown"><a style="font-family:Comic Sans MS; color:black;"  href="home"><span class="fa fa-home">Home</span></a>
+      <li class="dropdown"><a style="font-family:Comic Sans MS; color:black;"  href="#/"><span class="fa fa-home">Home</span></a>
       <li class="dropdown">
        <a class="dropdown-toggle"  style="font-family:Comic Sans MS;color:black;"  data-toggle="dropdown"  href="#/Blog">Friend<span class="caret"></span></a>
       <ul class="dropdown-menu">
-        <li><a href="#/viewfriend">View Friend</a></li>
+        <li><a href="#/view_friend">View Friend</a></li>
        <li><a href="#/search_friend">Search Friend</a></li>
       </ul>
     </li>
@@ -86,8 +90,8 @@ $(document).ready(
     <li class="dropdown">
        <a class="dropdown-toggle"  style="font-family:Comic Sans MS; color:black;" data-toggle="dropdown"  href="#/Blog">Job<span class="caret"></span></a>
       <ul class="dropdown-menu">
-        <li><a href="#">View Job</a></li>
-       <li><a href="#">Search Job</a>        </li>
+        <li><a href="#/view_job">View Job</a></li>
+       <li><a href="#/search_job">Search Job</a>        </li>
       </ul>
     </li>
     <li class="dropdown">
@@ -100,7 +104,8 @@ $(document).ready(
      </ul>
     <ul class="nav navbar-nav navbar-right">
 	
-		<li ng-hide=""class="dropdown"><a  style="font-family:Comic Sans MS;color:black;"   href="#/login"><span class="glyphicon glyphicon-log-in" ></span> Login</a></li>
+		<!-- <li ng-hide=""class="dropdown"><a  style="font-family:Comic Sans MS;color:black;"   href="#/login"><span class="glyphicon glyphicon-log-in" ></span> Login</a></li> -->
+		<li class="dropdown"><a  style="font-family:Comic Sans MS;color:black;" ng-click="ctrl.logout()"><span class="glyphicon glyphicon-log-out" ></span> Logout</a></li>
 		
 	
 	</ul>
@@ -122,8 +127,8 @@ $(document).ready(
 <script src="c_blog/BlogController.js"></script>
 <script src="c_blog/BlogService.js"></script>
 <script src="FriendController.js"></script>
-<script src="c_chat/ChatService.js"></script>
-<script src="c_chat/ChatController.js"></script>
+<script src="c_job/JobService.js"></script>
+<script src="c_job/JobController.js"></script>
 <script src="FriendService.js"></script>
 </html>
 

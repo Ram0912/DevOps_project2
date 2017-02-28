@@ -39,8 +39,8 @@ public class UserController {
 			return new ResponseEntity<List<Userdetails>>(HttpStatus.NO_CONTENT);
 		}
 		return new ResponseEntity<List<Userdetails>>(user,HttpStatus.OK);
-		
 	}
+	
 	//to create users
 	@RequestMapping(value="/createusers/", method=RequestMethod.POST)
 	public ResponseEntity<Userdetails> createusers(@RequestBody Userdetails userdetails){
@@ -89,6 +89,7 @@ public class UserController {
 	return new ResponseEntity<Userdetails>(userdetails,HttpStatus.OK);
 	
 }
+	
 	//delete user
 	@RequestMapping(value="/user/{userid}",method=RequestMethod.DELETE)
 	public ResponseEntity<Userdetails> deleteuser(@PathVariable("userid")String id)
@@ -143,10 +144,7 @@ public class UserController {
 	{
 		System.out.println("logout method");
 		Userdetails loggedInUser = (Userdetails) session.getAttribute("loggedInUser");
-
 		userdetails= userdetailsDAO.authenticate(loggedInUser.getUserid(), loggedInUser.getPassword());
-		
-		/*userdetails= userdetailsDAO.authenticate(userdetails.getUserid(), userdetails.getPassword());*/
 		friendDAO.setOffLine(loggedInUser.getUserid());
 		userdetailsDAO.setOffLine(loggedInUser.getUserid());
 		session.invalidate();

@@ -29,12 +29,21 @@ app.config(function($routeProvider) {
     templateUrl : 'pages/login.html',
     controller  : 'UserController'
   })
+  
+  .when('/logout', {
+    templateUrl : 'pages/logout.html',
+    controller  : 'UserController'
+  })
  .when('/register', {
     templateUrl : 'pages/register.html',
     controller  : 'UserController'
   })
   .when('/search_friend', {
     templateUrl : 'c_friends/search_friend.html',
+    controller  : 'FriendController'
+  })
+  .when('/view_friend', {
+    templateUrl : 'c_view/view_friend.html',
     controller  : 'FriendController'
   })
 
