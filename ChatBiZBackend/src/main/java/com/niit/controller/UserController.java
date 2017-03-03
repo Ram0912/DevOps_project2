@@ -15,139 +15,140 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.niit.dao.FriendDAO;
-import com.niit.dao.UserdetailsDAO;
-import com.niit.model.Userdetails;
+import com.niit.dao.ChatbizFriendDAO;
+import com.niit.dao.ChatbizUserDAO;
+import com.niit.model.ChatbizUsers;
+
 @RestController
 public class UserController {
 	
 	private static final Logger log=LoggerFactory.getLogger(UserController.class);
 	
 	@Autowired
-	UserdetailsDAO userdetailsDAO;
+	ChatbizUserDAO chatbizUserDAO;
 	@Autowired
-	Userdetails userdetails;
+	ChatbizUsers chatbizUsers;
 	@Autowired
-	FriendDAO friendDAO;
+	ChatbizFriendDAO chatbizFriendDAO;
 	
 	//for list
 	@RequestMapping(value="/users", method=RequestMethod.GET)
-	public ResponseEntity<List<Userdetails>> listAllUsers(){
+	public ResponseEntity<List<ChatbizUsers>> listAllUsers(){
 		log.debug("-->Calling method listAllUsers");
-		List<Userdetails> user=userdetailsDAO.list();
+		List<ChatbizUsers> user=chatbizUserDAO.list();
 		if(user.isEmpty()){
-			return new ResponseEntity<List<Userdetails>>(HttpStatus.NO_CONTENT);
+			return new ResponseEntity<List<ChatbizUsers>>(HttpStatus.NO_CONTENT);
 		}
-		return new ResponseEntity<List<Userdetails>>(user,HttpStatus.OK);
+		return new ResponseEntity<List<ChatbizUsers>>(user,HttpStatus.OK);
 	}
 	
 	//to create users
 	@RequestMapping(value="/createusers/", method=RequestMethod.POST)
-	public ResponseEntity<Userdetails> createusers(@RequestBody Userdetails userdetails){
+	public ResponseEntity<ChatbizUsers> createusers(@RequestBody ChatbizUsers chatbizUsers){
 		log.debug("-->Calling method createUsers");
-		if(userdetailsDAO.get(userdetails.getUserid())==null){
-			userdetailsDAO.save(userdetails);
-			return new ResponseEntity<Userdetails>(userdetails,HttpStatus.OK);
+		if(chatbizUserDAO.get(chatbizUsers.getUserid())==null){
+			chatbizUserDAO.save(chatbizUsers);
+			return new ResponseEntity<ChatbizUsers>(chatbizUsers,HttpStatus.OK);
 		}
-		log.debug("-->User already exist"+userdetails.getUserid());
-		return new ResponseEntity<Userdetails>(userdetails,HttpStatus.OK);
+		log.debug("-->User already exist"+chatbizUsers.getUserid());
+		return new ResponseEntity<ChatbizUsers>(chatbizUsers,HttpStatus.OK);
 		}
 
 	//to get user by user id
 	@RequestMapping(value="/user/{userid}",method=RequestMethod.GET)
-	public ResponseEntity<Userdetails> getuser(@PathVariable("userid")String id)
+	public ResponseEntity<ChatbizUsers> getuser(@PathVariable("userid")String id)
 	{
-	log.debug("-->calling get method");
-	Userdetails userdetails=userdetailsDAO.get(id);
-	if(userdetails==null)
+	log.debug("-->calling get user method");
+	ChatbizUsers chatbizUsers=chatbizUserDAO.get(id);
+	if(chatbizUsers==null)
 	{
 		log.debug("-->User does not exist");
-		userdetails = new Userdetails();
-		userdetails.setErrorcode("404");
-		userdetails.setErrormessage("User not found");
-		return new ResponseEntity<Userdetails>(userdetails,HttpStatus.NOT_FOUND);
+		chatbizUsers = new ChatbizUsers();
+		chatbizUsers.setErrorcode("404");
+		chatbizUsers.setErrormessage("User not found");
+		return new ResponseEntity<ChatbizUsers>(chatbizUsers,HttpStatus.NOT_FOUND);
 	}
 	log.debug("-->User exist");
-	return new ResponseEntity<Userdetails>(userdetails,HttpStatus.OK);
+	return new ResponseEntity<ChatbizUsers>(chatbizUsers,HttpStatus.OK);
 	}
 	
 	//update user by user id
 	@RequestMapping(value="/user/{userid}",method=RequestMethod.PUT)
-	public ResponseEntity<Userdetails> updateuser(@PathVariable("userid")String id)
+	public ResponseEntity<ChatbizUsers> updateuser(@PathVariable("userid")String id)
 	{
 	log.debug("-->calling update method");
-	if(userdetailsDAO.get(id)==null)
+	if(chatbizUserDAO.get(id)==null)
 	{
 		log.debug("-->User does not exist");
-		userdetails = new Userdetails();
-		userdetails.setErrorcode("404");
-		userdetails.setErrormessage("User not found");
-		return new ResponseEntity<Userdetails>(userdetails,HttpStatus.NOT_FOUND);
+		chatbizUsers = new ChatbizUsers();
+		chatbizUsers.setErrorcode("404");
+		chatbizUsers.setErrormessage("User not found");
+		return new ResponseEntity<ChatbizUsers>(chatbizUsers,HttpStatus.NOT_FOUND);
 	}
-	userdetailsDAO.update(userdetails);
+	chatbizUserDAO.update(chatbizUsers);
 	log.debug("-->User updated successfully");
-	return new ResponseEntity<Userdetails>(userdetails,HttpStatus.OK);
+	return new ResponseEntity<ChatbizUsers>(chatbizUsers,HttpStatus.OK);
 	
 }
 	
 	//delete user
 	@RequestMapping(value="/user/{userid}",method=RequestMethod.DELETE)
-	public ResponseEntity<Userdetails> deleteuser(@PathVariable("userid")String id)
+	public ResponseEntity<ChatbizUsers> deleteuser(@PathVariable("userid")String id)
 	{
 		log.debug("-->calling delete method");
-		Userdetails userdetails=userdetailsDAO.get(id);
-		if(userdetails==null)
+		ChatbizUsers chatbizUsers=chatbizUserDAO.get(id);
+		if(chatbizUsers==null)
 		{
 			log.debug("-->User does not exist");
-			userdetails = new Userdetails();
-			userdetails.setErrorcode("404");
-			userdetails.setErrormessage("Blog not found");
-			return new ResponseEntity<Userdetails>(userdetails,HttpStatus.NOT_FOUND);
+			chatbizUsers = new ChatbizUsers();
+			chatbizUsers.setErrorcode("404");
+			chatbizUsers.setErrormessage("Blog not found");
+			return new ResponseEntity<ChatbizUsers>(chatbizUsers,HttpStatus.NOT_FOUND);
 		}
-		userdetailsDAO.delete(id);
+		chatbizUserDAO.delete(id);
 		log.debug("-->User deleted successfully");
-		return new ResponseEntity<Userdetails>(userdetails,HttpStatus.OK);
+		return new ResponseEntity<ChatbizUsers>(chatbizUsers,HttpStatus.OK);
 		}
 	
 	
 	//authentication
 	@RequestMapping(value="/user/authenticate",method=RequestMethod.POST)
-	public ResponseEntity<Userdetails> authenticateuser(@RequestBody Userdetails userdetails,HttpSession session)
+	public ResponseEntity<ChatbizUsers> authenticateuser(@RequestBody ChatbizUsers chatbizUsers,HttpSession session)
 	{
 		log.debug("-->calling authenticate method");
-		userdetails=userdetailsDAO.authenticate(userdetails.getUserid(), userdetails.getPassword());
-		if(userdetails==null)
+		chatbizUsers=chatbizUserDAO.authenticate(chatbizUsers.getUserid(), chatbizUsers.getPassword());
+		if(chatbizUsers==null)
 		{
 			log.debug("-->User does not exist");
-			userdetails = new Userdetails();
+			chatbizUsers = new ChatbizUsers();
 			System.out.println("User does not exist");
-			userdetails.setErrorcode("404");
-			userdetails.setErrormessage("User does not exist");
+			chatbizUsers.setErrorcode("404");
+			chatbizUsers.setErrormessage("User does not exist");
 	}
 		else
 		{
-			userdetails.setErrorcode("200");
+			chatbizUsers.setErrorcode("200");
 			log.debug("-->User exist with above credentials");
-			session.setAttribute("loggedInUser",userdetails);
-			session.setAttribute("loggedInUserId", userdetails.getUserid());
-			friendDAO.setOnLine(userdetails.getUserid());
-			userdetailsDAO.setOnLine(userdetails.getUserid());
+			session.setAttribute("loggedInUser",chatbizUsers);
+			session.setAttribute("loggedInUserId", chatbizUsers.getUserid());
+			chatbizFriendDAO.setOnLine(chatbizUsers.getUserid());
+			chatbizUserDAO.setOnLine(chatbizUsers.getUserid());
 		}
-		return new ResponseEntity<Userdetails>(userdetails,HttpStatus.OK);
+		return new ResponseEntity<ChatbizUsers>(chatbizUsers,HttpStatus.OK);
 	}
 	
 	
 	
 	//logout method
-	@RequestMapping(value="/user/logout/",method=RequestMethod.GET)
-	public ResponseEntity<Userdetails> logout(HttpSession session)
+	@RequestMapping(value="/user/logout",method=RequestMethod.GET)
+	public ResponseEntity<ChatbizUsers> logout(HttpSession session)
 	{
-		System.out.println("logout method");
-		Userdetails loggedInUser = (Userdetails) session.getAttribute("loggedInUser");
-		userdetails= userdetailsDAO.authenticate(loggedInUser.getUserid(), loggedInUser.getPassword());
-		friendDAO.setOffLine(loggedInUser.getUserid());
-		userdetailsDAO.setOffLine(loggedInUser.getUserid());
+		System.out.println("logout");
+		ChatbizUsers loggedInUser = (ChatbizUsers) session.getAttribute("loggedInUser");
+		chatbizUsers= chatbizUserDAO.authenticate(loggedInUser.getUserid(), loggedInUser.getPassword());
+		chatbizFriendDAO.setOffLine(loggedInUser.getUserid());
+		chatbizUserDAO.setOffLine(loggedInUser.getUserid());
 		session.invalidate();
-		return new ResponseEntity<Userdetails>(userdetails,HttpStatus.OK);
+		return new ResponseEntity<ChatbizUsers>(chatbizUsers,HttpStatus.OK);
 	}
 }

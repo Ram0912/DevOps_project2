@@ -14,32 +14,32 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.niit.dao.FriendDAO;
+import com.niit.dao.ChatbizFriendDAO;
 
-import com.niit.model.Friend;
-import com.niit.model.Userdetails;
+import com.niit.model.ChatbizFriend;
+import com.niit.model.ChatbizUsers;
 
 @RestController
 public class FriendController {
 	
 	@Autowired
-	FriendDAO friendDAO;
+	ChatbizFriendDAO friendDAO;
 	@Autowired
-	Friend friend;
+	ChatbizFriend friend;
 	
 	
-	private static final Logger log=LoggerFactory.getLogger(Friend.class);
+	private static final Logger log=LoggerFactory.getLogger(ChatbizFriend.class);
 	@RequestMapping(value="/myfriends", method=RequestMethod.GET)
-	public ResponseEntity<List<Friend>> listAllFriend(HttpSession session){
+	public ResponseEntity<List<ChatbizFriend>> listAllFriend(HttpSession session){
 		log.debug("-->Calling method to listAllFriends");
-		Userdetails loggedInUser = (Userdetails) session.getAttribute("loggedInUser");
-		List<Friend> myfriends = friendDAO.getmyfriends(loggedInUser.getUserid());
-		return new ResponseEntity<List<Friend>> (myfriends,HttpStatus.OK);
+		ChatbizUsers loggedInUser = (ChatbizUsers) session.getAttribute("loggedInUser");
+		List<ChatbizFriend> myfriends = friendDAO.getmyfriends(loggedInUser.getUserid());
+		return new ResponseEntity<List<ChatbizFriend>> (myfriends,HttpStatus.OK);
 		
 	}
 		
 	@RequestMapping(value="/addfriend/{friendid}", method=RequestMethod.GET)
-	public ResponseEntity<Friend> sendFriendRequest(@PathVariable("friendid")String friendid,HttpSession session,Userdetails userdetails)
+	public ResponseEntity<ChatbizFriend> sendFriendRequest(@PathVariable("friendid")String friendid,HttpSession session,ChatbizUsers userdetails)
 	{
 		log.debug("-->Calling method send friend request");
 		String loggedInUserid = (String) session.getAttribute("loggedInUserId");
@@ -48,44 +48,44 @@ public class FriendController {
 		friend.setStatus("N");
 		friendDAO.setOnLine(userdetails.getUserid());
 		friendDAO.save(friend);
-		return new ResponseEntity<Friend>(friend,HttpStatus.OK);
+		return new ResponseEntity<ChatbizFriend>(friend,HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/unfriend/{friendid}", method=RequestMethod.GET)
-	public ResponseEntity<Friend> unfriend(@PathVariable("friendid")String friendid,HttpSession session)
+	public ResponseEntity<ChatbizFriend> unfriend(@PathVariable("friendid")String friendid,HttpSession session)
 	{
 		log.debug("-->Calling method to send the friend request");
-		Userdetails loggedInUser = (Userdetails) session.getAttribute("loggedInUser");	
+		ChatbizUsers loggedInUser = (ChatbizUsers) session.getAttribute("loggedInUser");	
 		friend.setUserid(loggedInUser.getUserid());
 		friend.setFriendid(friendid);
 		friend.setStatus("U");
 		friendDAO.update(friend);
-		return new ResponseEntity<Friend>(friend,HttpStatus.OK);
+		return new ResponseEntity<ChatbizFriend>(friend,HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/rejectFriend/{friendid}", method=RequestMethod.GET)
-	public ResponseEntity<Friend> rejectFriend(@PathVariable("friendid")String friendid,HttpSession session)
+	public ResponseEntity<ChatbizFriend> rejectFriend(@PathVariable("friendid")String friendid,HttpSession session)
 	{
 		log.debug("-->Calling method to reject friend request");
-		Userdetails loggedInUser = (Userdetails) session.getAttribute("loggedInUser");	
+		ChatbizUsers loggedInUser = (ChatbizUsers) session.getAttribute("loggedInUser");	
 		friend.setUserid(loggedInUser.getUserid());
 		friend.setFriendid(friendid);
 		friend.setStatus("R");
 		friendDAO.update(friend);
-		return new ResponseEntity<Friend>(friend,HttpStatus.OK);
+		return new ResponseEntity<ChatbizFriend>(friend,HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/getmyfriendRequest", method=RequestMethod.GET)
-	public ResponseEntity<Friend> getFriendRequest(HttpSession session){
+	public ResponseEntity<ChatbizFriend> getFriendRequest(HttpSession session){
 		log.debug("-->Calling method to listAllFriends");
 		String loggedInUserid = (String) session.getAttribute("loggedInUserId");
 
 		friendDAO.getNewFriendrequest(loggedInUserid);
-		return new ResponseEntity<Friend> (friend,HttpStatus.OK);
+		return new ResponseEntity<ChatbizFriend> (friend,HttpStatus.OK);
 	
 }
 	@RequestMapping(value="/acceptFriend/{friendid}", method=RequestMethod.GET)
-	public ResponseEntity<Friend> acceptFriend(@PathVariable("friendid")String friendid,HttpSession session,Userdetails userdetails)
+	public ResponseEntity<ChatbizFriend> acceptFriend(@PathVariable("friendid")String friendid,HttpSession session,ChatbizUsers userdetails)
 	{
 		log.debug("-->Calling method to accept friend request");
 		String loggedInUserId = (String) session.getAttribute("loggedInUserId");
@@ -95,13 +95,13 @@ public class FriendController {
 		friendDAO.setOnLine(userdetails.getUserid());
 		friendDAO.update(friend);
 		//updateRequest(friendid,"A",session);
-		return new ResponseEntity<Friend> (friend,HttpStatus.OK);
+		return new ResponseEntity<ChatbizFriend> (friend,HttpStatus.OK);
 	}
 	
 	
 	@RequestMapping(value="/myfriends/{id}", method=RequestMethod.GET)
-	public ResponseEntity<List<Friend>> getmyFriendsTemp(@PathVariable("id")String id){
-		List<Friend> myfriends = friendDAO.getmyfriends(id);
-		return new ResponseEntity<List<Friend>> (myfriends,HttpStatus.OK);
+	public ResponseEntity<List<ChatbizFriend>> getmyFriendsTemp(@PathVariable("id")String id){
+		List<ChatbizFriend> myfriends = friendDAO.getmyfriends(id);
+		return new ResponseEntity<List<ChatbizFriend>> (myfriends,HttpStatus.OK);
 	}
 	}

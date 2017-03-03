@@ -8,16 +8,16 @@ app.config(function($routeProvider) {
     controller  : 'HomeController'
   })
 .when('/chat', {
-    templateUrl : 'c_chat/chat.html',
+    templateUrl : 'chatbiz_chat/chat.html',
     controller  : 'ChatController'
   })
  
   .when('/list_blog', {
-    templateUrl : 'c_blog/list_blog.html',
+    templateUrl : 'chatbiz_blog/list_blog.html',
     controller  : 'BlogController'
   })
   .when('/create_blog', {
-    templateUrl : 'c_blog/create_blog.html',
+    templateUrl : 'chatbiz_blog/create_blog.html',
     controller  : 'BlogController'
   })
 
@@ -39,11 +39,11 @@ app.config(function($routeProvider) {
     controller  : 'UserController'
   })
   .when('/search_friend', {
-    templateUrl : 'c_friends/search_friend.html',
+    templateUrl : 'chatbiz_friends/search_friend.html',
     controller  : 'FriendController'
   })
   .when('/view_friend', {
-    templateUrl : 'c_view/view_friend.html',
+    templateUrl : 'chatbiz_view/view_friend.html',
     controller  : 'FriendController'
   })
 

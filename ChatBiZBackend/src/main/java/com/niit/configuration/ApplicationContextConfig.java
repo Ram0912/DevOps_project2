@@ -13,10 +13,10 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.niit.model.Blog;
-import com.niit.model.Friend;
-import com.niit.model.Job;
-import com.niit.model.Userdetails;
+import com.niit.model.ChatbizBlog;
+import com.niit.model.ChatbizFriend;
+import com.niit.model.ChatbizJob;
+import com.niit.model.ChatbizUsers;
 
 
 @Configuration
@@ -32,7 +32,7 @@ public class ApplicationContextConfig {
 		hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "update");
 		hibernateProperties.setProperty("hibernate.show_sql", "true");
 		lsf.addProperties(hibernateProperties);
-		Class classes[]={Job.class,Userdetails.class,Friend.class,Blog.class};
+		Class classes[]={ChatbizJob.class,ChatbizUsers.class,ChatbizFriend.class,ChatbizBlog.class};
 		return lsf.addAnnotatedClasses(classes)
 
 		   .buildSessionFactory();
@@ -42,8 +42,8 @@ public class ApplicationContextConfig {
 	    BasicDataSource dataSource = new BasicDataSource();
 	    dataSource.setDriverClassName("oracle.jdbc.OracleDriver");
 	    dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:XE");
-	    dataSource.setUsername("SANGEETH");
-	    dataSource.setPassword("sangeeth");
+	    dataSource.setUsername("RAM");
+	    dataSource.setPassword("ram");
 	    return dataSource;
 	}
 	@Autowired
