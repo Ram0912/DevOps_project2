@@ -1,6 +1,3 @@
-/**
- * Created by ikismail on 30-Nov-16
- */
 
 var app = angular.module('myApp', [ 'ngRoute', 'ngCookies' ]);
 

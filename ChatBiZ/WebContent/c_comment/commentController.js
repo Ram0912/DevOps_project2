@@ -1,6 +1,3 @@
-/**
- * Created by ikism on Dec 2, 2016
- */
 
 app.controller('commentController',
 		function($scope, commentService, $location) {

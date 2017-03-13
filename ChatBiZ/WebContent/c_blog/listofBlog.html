@@ -20,12 +20,6 @@
 					<div class="w3-container">
 						<h4 class="w3-center">{{currentUser.fName + " " +
 							currentUser.lName}}</h4>
-						<p class="w3-center">
-							<img
-								src="http://localhost:8091/Collaboration/resources/images/{{currentUser.emailId}}"
-								class="w3-circle" style="height: 106px; width: 106px"
-								alt="Avatar">
-						</p>
 						<hr>
 						<p>
 							<i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i>
@@ -105,12 +99,8 @@
 					data-ng-repeat="b in blogs | orderBy:'-blogId' | filter:blogSearch">
 					<br> <span class="w3-right w3-opacity">{{b.blogCreatedDate}}</span>
 
-					<div class="w3-left">
-						<img style="margin-right: 20px;"
-							src="http://localhost:8091/Collaboration/resources/images/{{b.userId}}"
-							class="img-circle" width="50" height="50">
-					</div>
-					<h4>{{b.title}}</h4>
+										<h4>{{b.title}}</h4>
+										<p>created by {{b.userId}}</p>
 					<br>
 					<hr class="w3-clear">
 					<p>{{b.description}}.</p>

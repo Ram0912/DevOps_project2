@@ -22,7 +22,7 @@
 						<fieldset>
 							<div class="form-group"
 								data-ng-class="{ 'has-error': form.emailId.$dirty && form.emailId.$error.required }">
-								<input class="form-control" placeholder="E-mail" id="emailId"
+								<input class="form-control" placeholder="E-mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="emailId"
 									type="email" data-ng-model="user.emailId" required /> <span
 									data-ng-show="form.emailId.$dirty && form.emailId.$error.required"
 									class="help-block">EmailId is required</span>

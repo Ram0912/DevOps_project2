@@ -1,6 +1,4 @@
-/**
- *  Created by ikism on Dec 2, 2016
- */
+
 
 app.factory('commentService',function($http){
 	console.log('starting commentService')
